@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paw Paw’s Place – Custom Meat Processing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Paw Paw’s Place is a ministry-owned, nonprofit 501(c)(3) custom meat processing facility specializing in deer, beef, pork, and poultry. TDA inspected and proud partner in Tennessee Hunters for the Hungry.">
+  <style>
+    :root {
+      --primary: #7a1f1f;
+      --primary-dark: #561515;
+      --accent: #f4d18c;
+      --bg: #f6f2ec;
+      --text: #222;
+      --muted: #666;
+      --radius: 10px;
+      --shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(246,242,236,0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .nav-brand img {
+      height: 70px;
+      width: 70px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+   
+
+    .nav-links {
+      display: flex;
+      gap: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-phone {
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.05s ease, box-shadow 0.1s ease, background 0.1s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+      padding: 2rem 0 2.5rem;
+    }
+
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #e4dace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-tagline span {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #40210f;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 4vw, 2.9rem);
+      margin-bottom: 0.5rem;
+      color: #2b1717;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 0.99rem;
+      max-width: 36rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px dashed #d2c4b2;
+      color: #5b4331;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .hero-right {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.25rem 1.5rem;
+      border: 1px solid #e4dace;
+    }
+
+    .hero-right h2 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-right p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-list {
+      list-style: none;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-list li {
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+
+    /* Sections */
+    section {
+      margin-top: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: #2b1717;
+    }
+
+    section > p.section-intro {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      max-width: 44rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+      border: 1px solid #e4dace;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+      color: #3a2323;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .card ul {
+      font-size: 0.9rem;
+      padding-left: 1.1rem;
+      margin-top: 0.25rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #e1d2c1;
+      background: #fbf8f4;
+      color: #5b4331;
+    }
+
+    /* Hunters for the Hungry */
+    .hunters {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .highlight {
+      background: #fff7e6;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      border: 1px solid #f1dfbb;
+    }
+
+    .highlight h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .highlight p {
+      font-size: 0.9rem;
+      color: #5b4331;
+    }
+
+    .highlight ol {
+      margin-top: 0.4rem;
+      padding-left: 1.25rem;
+      font-size: 0.9rem;
+      color: #5b4331;
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .step {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      border: 1px solid #e4dace;
+      font-size: 0.9rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-number {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.8rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: rgba(122,31,31,0.12);
+    }
+
+    .step h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+      color: #3a2323;
+    }
+
+    .step p {
+      color: var(--muted);
+    }
+
+    /* FAQ / Notes */
+    .faq {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .faq-item {
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-item h3 {
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+      color: #3a2323;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Contact */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+      border: 1px solid #e4dace;
+    }
+
+    .contact-row {
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-label {
+      font-weight: 600;
+      color: #3a2323;
+    }
+
+    form {
+      display: grid;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    label {
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: #3a2323;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #d7c7b5;
+      font: inherit;
+      background: #fcfbf9;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .small-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .map-placeholder {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      border: 1px dashed #d2c4b2;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid #e0d4c7;
+      padding: 1.25rem 1.25rem 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer strong {
+      color: #3a2323;
+    }
+
+    /* Kitchen Image */
+    .contact-image img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid #e4dace;
+      object-fit: cover;
+    }
+    /*deer*/
+    .hunters-image img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid #e4dace;
+      object-fit: cover;
+    }
+
+    
+    @media (max-width: 600px) {
+      main {
+        padding-inline: 1rem;
+      }
+      .nav {
+        padding-inline: 1rem;
+      }
+    }
+    .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Modal Box */
+.modal-box {
+  background: #fff;
+  padding: 1rem;
+  border-radius: var(--radius);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: var(--shadow);
+  border: 1px solid #e4dace;
+  position: relative;
+}
+
+
+/* Image inside modal */
+.modal-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Close Button */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--primary);
+  font-weight: bold;
+}
+#galleryModal .modal-close {
+  color: white !important;
+  font-size: 3rem;
+  text-shadow: 0 0 12px rgba(0,0,0,0.9);
+  z-index: 200000;
+}
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  font-size: 1.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  color: var(--primary);
+}
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .grid-2,
+  .hunters,
+  .faq,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding-top: 1.25rem;
+  }
+  .hero-right {
+    order: -1;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none !important;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    width: calc(100% - 30px);
+    padding: 1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid #e4dace;
+    z-index: 99999;
+  }
+
+  .nav-links.open {
+    display: flex !important;
+  }
+
+  .nav-phone {
+    display: none;
+  }
+  
+}
+.gallery-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-prev,
+.gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.gallery-prev:hover,
+.gallery-next:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.gallery-prev {
+  left: 15px;
+}
+
+.gallery-next {
+  right: 15px;
+}
+.brand-bar {
+  position: relative;
+  z-index: 10;
+  background: rgba(246,242,236,0.98);
+  backdrop-filter: blur(10px);
+  padding: 0.6rem 1rem; 
+  text-align: center;
+  border-bottom: 1px solid #e0d4c7;
+}
+
+
+.brand-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #3a2323;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  color: #7a5c3c;
+  margin-top: -2px;
+}
+
+.gallery-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 3rem;
+  cursor: pointer;
+  z-index: 100000; /* <- absolutely above everything */
+  color: white !important;
+  font-weight: bold;
+  text-shadow: 0 0 12px rgba(0,0,0,0.9); /* <-- makes it visible on any image */
+}
+
+
+.gallery-close:hover {
+  color: #ffcccc;
+}
+@media (max-width: 900px) {
+  .nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* left | center | right */
+    align-items: center;
+  }
+
+  .nav-brand {
+    justify-self: start;
+  }
+
+  .nav-cta {
+    justify-self: center; /* centers the button */
+  }
+
+  #navToggle {
+    justify-self: end; /* hamburger on right */
+  }
+}
+
+
+.brand-text {
+  text-align: right;
+  line-height: 1.2;
+}
+.brand-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3a2323;
+}
+.brand-subtitle {
+  font-size: 0.8rem;
+  color: #7a5c3c;
+}
+.brand-logo-img {
+  width: 130px;      /* adjust size as preferred */
+  height: auto;      /* keeps natural aspect ratio */
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 25%;  /* prevent circle mask */
+}
+.brand-bar {
+  padding-bottom: 0.2rem !important;
+  padding-top: 0.2rem !important;
+}
+
+.hero {
+  padding-top: 0.2rem !important;
+  margin-top: 0 !important;
+}
+
+main {
+  padding-top: 0.2rem !important;
+}
+.nav-brand .btn-primary {
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: 12px;
+}
+
+
+
+
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="nav-brand">
+    <a href="#contact" class="btn btn-primary">Book a Drop-Off</a>
+</div>
+
+
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Processing</a>
+      <a href="#" id="openPriceSheet">Price Sheet</a>
+      <a href="#gallery" id="openGalleryNav">Gallery</a>
+      <a href="#hunters">Hunters for the Hungry</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    
+    <div class="nav-cta">
+  <span class="nav-phone">📞 (615) 762-7486</span>
+
+  <div class="brand-text">
+    <div class="brand-title">Paw Paw’s Place</div>
+    <div class="brand-subtitle">“Oh Brother, it’s good.”</div>
+  </div>
+</div>
+
+    <div class="nav-toggle" id="navToggle">☰</div>
+  </div>
+</header>
+<div class="brand-bar" style="text-align:center;">
+    <img src="images/logo.jpg" class="brand-logo-img">
+
+</div>
+
+
+<main>
+  <section class="hero" id="top">
+    <div>
+      <div class="hero-tagline">
+        <span>Ministry Owned</span>
+        <div>Nonprofit 501(c)(3) • TDA Inspected</div>
+      </div>
+      <h1>
+        Custom meat processing for <em>deer, beef, pork &amp; poultry</em> in Tennessee.
+      </h1>
+      <p class="hero-subtitle">
+        Paw Paw’s Place is a ministry-owned, nonprofit custom processing facility. 
+        We’re TDA inspected, with access to USDA meat options, and we proudly partner 
+        with the Tennessee Department of Agriculture’s Hunters for the Hungry program.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">🦌 Deer • 🐄 Beef • 🐖 Pork • 🐓 Poultry</span>
+        <span class="badge">TDA Inspected Facility</span>
+        <span class="badge">Nonprofit 501(c)(3)</span>
+      </div>
+      <div class="hero-actions">
+        <a href="tel:16157627486" class="btn btn-primary">Call to Schedule</a>
+        <a href="#contact" class="btn btn-outline">Request Processing</a>
+        <button class="btn btn-outline" id="openGalleryHero">Photo Gallery</button>
+      </div>
+      <p class="hero-note">
+        Serving hunters, farmers, and families with integrity, excellence, and a ministry heart.
+      </p>
+    </div>
+    
+  </section>
+
+  <section id="about">
+    <h2>About Paw Paw’s Place</h2>
+    <p class="section-intro">
+      Paw Paw’s Place is more than a meat shop – it’s a ministry. As a nonprofit 501(c)(3) 
+      and ministry-owned facility, we exist to serve our community, support recovery and 
+      discipleship efforts, and help families put quality meat on the table.
+    </p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Ministry-Owned • Nonprofit 501(c)(3)</h3>
+        <p>
+          Every animal that comes through our doors helps support the broader ministry work 
+          connected to Paw Paw’s Place and our recovery-focused outreach. When you process 
+          with us, you’re also helping change lives.
+        </p>
+        <ul>
+          <li>All profits support ministry and recovery efforts.</li>
+          <li>Focused on integrity, honesty, and serving others.</li>
+          <li>Family-style atmosphere with a heart to help.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>TDA Inspected • USDA Meat Options</h3>
+        <p>
+          Our facility is inspected by the Tennessee Department of Agriculture (TDA), and 
+          we have the opportunity to work with USDA meat options where applicable.
+        </p>
+        <ul>
+          <li>TDA inspected custom processing facility.</li>
+          <li>Safe handling and clean, professional environment.</li>
+          <li>Vacuum-sealed packaging and clear labeling available.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Custom Meat Processing Services</h2>
+    <p class="section-intro">
+      We provide custom processing for deer, beef, pork, and poultry. From basic cuts to 
+      specialty items, we’ll walk you through the cut sheet so you get exactly what your 
+      family likes to eat.
+    </p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Deer (Wild Game) Processing</h3>
+        <p>
+          Bring your field-dressed deer and choose how you’d like it processed. We offer 
+          a variety of cuts and grind options to fit your family’s needs. Venison is lean, 
+          healthy, and a powerful way to support food ministries, shelters, 
+          and families facing food insecurity.
+        </p>
+        <ul>
+          <li>Standard, basic, and full-service cutting options.</li>
+          <li>Backstrap, roasts, steaks, and ground venison.</li>
+          <li>Sausage and specialty items available (varies by season).</li>
+          <li>Provides high-quality protein to local families.</li>
+          <li>Supports ministry-based outreach and recovery work.</li>
+          <li>Helps reduce hunger right here in Tennessee.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Whitetail Deer</span>
+          <span class="pill">Custom Cut Sheets</span>
+          <span class="pill">Vacuum Sealed</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Beef, Pork &amp; Poultry</h3>
+        <p>
+          We work with farmers and families for custom beef, hog, and poultry processing. 
+          We’ll help you build a cut plan that matches your freezer space and your recipes.
+        </p>
+        <ul>
+          <li>Whole, half, or quarter beef and hog processing.</li>
+          <li>Chops, roasts, ribs, ground, and stew meat options.</li>
+          <li>Poultry processing available by appointment.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Farm to Freezer</span>
+          <span class="pill">Whole &amp; Half Animals</span>
+          <span class="pill">Custom Packaging</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="small-note">
+      <strong>Seasonal Note:</strong> Beef and pork processing generally pause during peak deer 
+      season (November–January) to prioritize deer processing. Please contact us for current 
+      scheduling, deposits, and pricing.
+    </p>
+  </section>
+
+  <section id="hunters">
+    <h2>Hunters for the Hungry – Tennessee</h2>
+    <p class="section-intro">
+      Paw Paw’s Place is honored to participate in the Tennessee Department of Agriculture’s 
+      Hunters for the Hungry–style program, allowing hunters to donate venison to feed families 
+      in need.
+    </p>
+    <div class="hunters">
+      <div class="highlight">
+        <h3>Turn Your Harvest Into a Blessing</h3>
+        <p>
+          If you’re a hunter, you can donate all or part of your deer to help provide 
+          high-quality protein to local families and ministries. It’s a simple way to 
+          give back using something you already love to do.
+        </p>
+        <ol>
+          <li>Harvest your deer legally and tag it as required by Tennessee law.</li>
+          <li>Bring your deer to Paw Paw’s Place and let us know you’d like to donate.</li>
+          <li>We process the meat according to program guidelines and it is distributed 
+              to families and organizations in need.</li>
+        </ol>
+        <p class="small-note">
+          Program details, coverage of processing costs, and limits can vary by season. 
+          Please contact us or check current Tennessee Department of Agriculture information 
+          for the latest guidelines.
+        </p>
+      </div>
+      <div class="hunters-image">
+        <img src="images/deer.jpeg" alt="Deer">
+</div>
+    </div>
+  </section>
+
+  <section id="how-it-works">
+    <h2>How Processing Works</h2>
+    <p class="section-intro">
+      Whether it’s your first time bringing in an animal or your hundredth, we’ll make the 
+      process straightforward and clear.
+    </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Call &amp; Schedule</h3>
+        <p>
+          Call <strong>(615) 762-7486</strong> to discuss the animal you’re bringing, 
+          current turnaround times, deposits, and any special requests.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Drop Off &amp; Cut Sheet</h3>
+        <p>
+          Bring your tagged animal during your scheduled time. We’ll walk you through the 
+          cut sheet and confirm how you want everything packaged.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Pick Up &amp; Enjoy</h3>
+        <p>
+          Once processing is complete, we’ll call you for pickup. Settle your remaining 
+          balance, load your meat, and enjoy quality cuts that fit your family.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>Important Notes &amp; Common Questions</h2>
+    <div class="faq">
+      <div>
+        <div class="faq-item">
+          <h3>Do you require a deposit?</h3>
+          <p>
+            Deposits may be required for beef and hog processing and during busy seasons. 
+            Please call for current deposit amounts and policies.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>What about field dressing and cleanliness?</h3>
+          <p>
+            To protect all customers, we reserve the right to refuse any animal that is 
+            unsanitary, improperly dressed, or poses a food-safety concern. Clean, quickly 
+            chilled animals produce the best meat.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>Do you process other wild game?</h3>
+          <p>
+            Our primary wild-game focus is deer. Other species may be considered on a 
+            case-by-case basis. Call us to ask about your specific needs.
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="faq-item">
+          <h3>Are you open year-round?</h3>
+          <p>
+            We operate year-round, but our schedule changes seasonally. During peak deer 
+            season, we may pause beef and pork to focus on deer. Call for current availability.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>Is this a ministry?</h3>
+          <p>
+            Yes. Paw Paw’s Place is a ministry-owned nonprofit 501(c)(3). Your business helps 
+            support recovery, discipleship, and outreach in our community.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact &amp; Location</h2>
+    <p class="section-intro">
+      Ready to schedule processing or ask a question? Reach out by phone or use the form below 
+      and we’ll get back to you as soon as we can.
+    </p>
+
+    <div class="contact-layout">
+
+      <div class="contact-card">
+        <div class="contact-row">
+          <span class="contact-label">Phone:</span> <a href="tel:16157627486">(615) 762-7486</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Address:</span>
+          375 Spring Creek Ln, Lebanon, TN 37090
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Ownership:</span>
+          Ministry-owned, nonprofit 501(c)(3)
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Inspection:</span>
+          TDA inspected facility with access to USDA meat options
+        </div>
+
+        <hr style="margin: 0.9rem 0; border: none; border-top: 1px solid #e0d4c7;">
+
+        <form action="https://formsubmit.co/crossstylecenter.tyanna@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Processing Request from Website">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required>
+          </div>
+
+          <div>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" placeholder="Best number to reach you" required>
+          </div>
+
+          <div>
+            <label for="email">Email (optional)</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com">
+          </div>
+
+          <div>
+            <label for="animal">What are you processing?</label>
+            <select id="animal" name="animal">
+              <option value="">Select an option</option>
+              <option>Deer</option>
+              <option>Beef</option>
+              <option>Pork</option>
+              <option>Poultry</option>
+              <option>Hunters for the Hungry Donation</option>
+              <option>Other / Question</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us what you’re bringing, when you’d like to schedule, and any special requests."></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="contact-image">
+        <img src="images/kitchen.jpeg" alt="Kitchen">
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>Paw Paw’s Place</strong> • Ministry-owned nonprofit 501(c)(3) • Lebanon, Tennessee
+</footer>
+<div id="priceSheetModal" class="modal-overlay">
+  <div class="modal-box">
+    <span class="modal-close" id="closePriceSheet">&times;</span>
+    <img src="images/price_sheet.jpeg" alt="Price Sheet" class="modal-image">
+  </div>
+</div>
+<div id="galleryModal" class="modal-overlay">
+  <div class="modal-box" style="max-width:95vw; max-height:95vh; padding:0; position:relative;">
+        <span class="modal-close" id="closeGallery">&times;</span>
+    <div class="gallery-container">
+      <img id="galleryImage" class="modal-image" src="" alt="Gallery Image">
+      <button class="gallery-prev">&#10094;</button>
+      <button class="gallery-next">&#10095;</button>
+    </div>
+  </div>
+</div>
+<script>
+  const galleryImages = [
+  "gallery/backstrap.jpeg",
+  "gallery/ground.jpeg",
+  "gallery/ground1.jpeg",
+  "gallery/ground2.jpeg",
+  "gallery/guy.jpg",
+  "gallery/hanging.jpeg",
+  "gallery/links.jpeg",
+  "gallery/patties.jpeg",
+  "gallery/seal.jpeg",
+  "gallery/tongue.jpg",
+  "gallery/truck.jpeg"
+  // Add or remove as needed
+];
+
+let galleryIndex = 0;
+let galleryTimer;
+
+function showGalleryImage(index) {
+  const img = document.getElementById("galleryImage");
+  img.src = galleryImages[index];
+}
+
+function startGalleryAutoScroll() {
+  galleryTimer = setInterval(() => {
+    galleryIndex = (galleryIndex + 1) % galleryImages.length;
+    showGalleryImage(galleryIndex);
+  }, 5000);
+}
+
+document.getElementById("openGalleryNav").addEventListener("click", openGallery);
+document.getElementById("openGalleryHero").addEventListener("click", openGallery);
+
+function openGallery(e) {
+  e.preventDefault();
+  galleryIndex = 0;
+  showGalleryImage(galleryIndex);
+  document.getElementById("galleryModal").style.display = "flex";
+  startGalleryAutoScroll();
+}
+
+
+// NEXT BUTTON
+document.querySelector(".gallery-next").addEventListener("click", function(e) {
+  e.stopPropagation();
+  galleryIndex = (galleryIndex + 1) % galleryImages.length;
+  showGalleryImage(galleryIndex);
+});
+
+// PREV BUTTON
+document.querySelector(".gallery-prev").addEventListener("click", function(e) {
+  e.stopPropagation();
+  galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
+  showGalleryImage(galleryIndex);
+});
+
+// CLOSE GALLERY
+document.getElementById("closeGallery").addEventListener("click", function() {
+  document.getElementById("galleryModal").style.display = "none";
+  clearInterval(galleryTimer);
+});
+
+// CLOSE IF CLICKED OUTSIDE
+window.addEventListener("click", function(e) {
+  const modal = document.getElementById("galleryModal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+    clearInterval(galleryTimer);
+  }
+});
+  window.addEventListener("scroll", function() {
+  const nav = document.querySelector(".nav-links");
+  if (nav.classList.contains("open")) {
+    nav.classList.remove("open");
+  }
+});
+window.addEventListener("click", function(e) {
+  const nav = document.querySelector(".nav-links");
+  const toggle = document.getElementById("navToggle");
+  const modal = document.getElementById("priceSheetModal");
+
+  if (nav.classList.contains("open") &&
+      !nav.contains(e.target) &&
+      !toggle.contains(e.target)) {
+    nav.classList.remove("open");
+  }
+
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+  document.getElementById("navToggle").addEventListener("click", function() {
+  document.querySelector(".nav-links").classList.toggle("open");
+});
+document.getElementById("openPriceSheet").addEventListener("click", function(e) {
+  e.preventDefault();
+  document.getElementById("priceSheetModal").style.display = "flex";
+});
+
+document.getElementById("closePriceSheet").addEventListener("click", function() {
+  document.getElementById("priceSheetModal").style.display = "none";
+});
+
+window.addEventListener("click", function(e) {
+  if (e.target.id === "priceSheetModal") {
+    document.getElementById("priceSheetModal").style.display = "none";
+  }
+});
+</script>
+
+</body>
+</html>
